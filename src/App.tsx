@@ -1,4 +1,5 @@
 import React from 'react'
+import { Filters } from './components/Filters';
 
 import { Header } from './components/Header';
 import { ProgressBar } from './components/ProgressBar';
@@ -10,6 +11,7 @@ function App() {
     <Container>
       <Header />
       <ProgressBar />
+      <Filters />
     </Container>
   )
 }

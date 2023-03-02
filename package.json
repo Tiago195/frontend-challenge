@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@loadable/component": "^5.15.3",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.11",
     "@types/i18next": "^13.0.0",
     "@types/loadable__component": "^5.13.4",
     "@types/lodash": "^4.14.191",
