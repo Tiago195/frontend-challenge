@@ -33,6 +33,7 @@ export const Search = styled.section`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    
   }
 
   input {
@@ -40,5 +41,9 @@ export const Search = styled.section`
     border: none;
     width: 100%;
     outline: none;
+    
+    ::placeholder {
+      color: #848484;
+    }
   }
 `

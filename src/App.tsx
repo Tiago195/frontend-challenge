@@ -3,6 +3,7 @@ import { Filters } from './components/Filters';
 
 import { Header } from './components/Header';
 import { ProgressBar } from './components/ProgressBar';
+import { Todo } from './components/Todo';
 
 import { Container } from './styles';
 
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <ProgressBar />
       <Filters />
+      <Todo />
     </Container>
   )
 }
