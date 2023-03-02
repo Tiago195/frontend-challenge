@@ -3,17 +3,26 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 import { Container, TaskList, AddTask, Task } from './style'
 
-export const Todo = () => {
+type Props = {
+  text: string
+}
+
+export const Todo = ({ text }: Props) => {
+  const isSearchFor = text.length === 0;
+
   return (
     <Container>
-      <AddTask>
-        <label htmlFor="">
-          <input type="text" placeholder='Add new item...' />
-        </label>
-        <div className='plus'>
-          <AddCircleOutlinedIcon fontSize='medium' />
-        </div>
-      </AddTask>
+
+      {isSearchFor && (
+        <AddTask>
+          <label htmlFor="">
+            <input type="text" placeholder='Add new item...' />
+          </label>
+          <div className='plus'>
+            <AddCircleOutlinedIcon fontSize='medium' />
+          </div>
+        </AddTask>
+      )}
 
       <TaskList>
         <Task>

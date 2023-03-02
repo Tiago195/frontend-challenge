@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Filters } from './components/Filters';
 
 import { Header } from './components/Header';
@@ -8,12 +8,14 @@ import { Todo } from './components/Todo';
 import { Container } from './styles';
 
 function App() {
+  const [text, setText] = useState("");
+
   return (
     <Container>
       <Header />
       <ProgressBar />
-      <Filters />
-      <Todo />
+      <Filters text={text} setText={setText} />
+      <Todo text={text} />
     </Container>
   )
 }

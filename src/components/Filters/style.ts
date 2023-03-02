@@ -14,10 +14,23 @@ export const Filter = styled.section`
   color: #848484;
   align-items: center;
   
-  div {
+  /* div {
+
+  } */
+
+  label {
     border: 1px solid #DBDBDB;
     border-radius: 17px;
     padding: 9px 16px;
+  }
+
+  .select {
+    color: #4DA6B3;
+    border: 1px solid #4DA6B3;
+  }
+
+  input {
+    display: none;
   }
 `
 
