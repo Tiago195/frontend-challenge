@@ -18,8 +18,12 @@ export const Filters = ({ text, setText }: Props) => {
 
   const handleFilter = (event: any, index: number) => {
     setFilter((old => {
-      if (!old.some(x => x)) old[index] = event.target.checked;
-      if (old.findIndex(x => x) === index) old[index] = event.target.checked;
+      const isChecked = old.some(x => x);
+
+      if (isChecked && index !== old.findIndex(x => x)) {
+        return old.reverse();
+      }
+      old[index] = event.target.checked;
       return [...old];
     }));
   }
@@ -28,14 +32,14 @@ export const Filters = ({ text, setText }: Props) => {
     <Container>
 
       <Filter>
-        <label className={filter[0] ? 'select' : ''} onChange={(e) => handleFilter(e, 0)} htmlFor="done">
+        <label className={filter[0] ? 'select' : ''} htmlFor="done">
           <span>Done</span>
-          <input type="checkbox" name='done' id='done' />
+          <input type="checkbox" name='done' id='done' onChange={(e) => handleFilter(e, 0)} checked={filter[0]} />
         </label>
 
-        <label className={filter[1] ? 'select' : ''} onChange={(e) => handleFilter(e, 1)} htmlFor="pending">
+        <label className={filter[1] ? 'select' : ''} htmlFor="pending">
           <span>Pending</span>
-          <input type="checkbox" name='pending' id='pending' />
+          <input type="checkbox" name='pending' id='pending' onChange={(e) => handleFilter(e, 1)} checked={filter[1]} />
         </label>
       </Filter>
 
