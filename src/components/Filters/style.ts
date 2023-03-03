@@ -5,6 +5,10 @@ export const Container = styled.section`
   justify-content: space-between;
   gap: 55px;
 
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
 `
 
 export const Filter = styled.section`
@@ -13,10 +17,6 @@ export const Filter = styled.section`
   font-size: 14px;
   color: #848484;
   align-items: center;
-  
-  /* div {
-
-  } */
 
   label {
     border: 1px solid #DBDBDB;
@@ -31,6 +31,10 @@ export const Filter = styled.section`
 
   input {
     display: none;
+  }
+
+  @media (max-width: 500px) {
+    justify-content: flex-end
   }
 `
 

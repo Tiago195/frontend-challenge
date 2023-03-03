@@ -5,5 +5,8 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 24px;
-`
 
+  @media (max-width: 500px) {
+    padding: 48px 16px;
+  }
+`

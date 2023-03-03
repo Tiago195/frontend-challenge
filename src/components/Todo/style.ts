@@ -9,6 +9,7 @@ export const Container = styled.section`
 export const AddTask = styled.form`
   border: 1px solid #DBDBDB;
   border-radius: 4px;
+  overflow: hidden;
   /* height: 46px; */
   background-color: #F7F7F7;
   display: flex;
@@ -44,27 +45,12 @@ export const AddTask = styled.form`
     border: none;
     cursor: pointer;
   }
-
-  .plus:disabled {
-    opacity: .5;
-  }
 `
 
 export const TaskList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 220px;
-  overflow-y: auto;
-  
-  ::-webkit-scrollbar-track {
-    background: #E4E4E4;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #848484; 
-  }
-  
 `
 
 export const NotFound = styled.p`

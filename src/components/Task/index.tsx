@@ -1,9 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react'
 import { ITask } from '../../interfaces/ITask'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-import { Button, Buttons, Container } from './style'
+import { Button, Buttons, Container, Editing } from './style'
 
 type Props = {
   task: ITask
@@ -21,11 +21,35 @@ export const Task = ({ task, setTasks }: Props) => {
     setTasks(old => [...old]);
   }
 
+  const editing = ({ target }: any) => {
+    setTasks(old => {
+      const index = old.findIndex(x => x.id === task.id);
+      old[index].content = target.value;
+
+      return [...old];
+    })
+  }
+
   return (
     <Container onMouseEnter={() => setIsViewButtons(true)} onMouseLeave={() => setIsViewButtons(false)}>
       <div className='text'>
-        <span>{task.content}</span>
+        {isViewButtons ? (
+          <label htmlFor="edit">
+            <input type="text" id='edit' name='edit' value={task.content} onChange={editing} />
+          </label>
+        ) : (
+          <span>{task.content}</span>
+        )}
       </div>
+
+      {isViewButtons && (
+        <Editing>
+          <div className='triangle' />
+          <div className='text'>
+            <span>Edit task</span>
+          </div>
+        </Editing>
+      )}
 
       {isViewButtons && (
         <Buttons>
