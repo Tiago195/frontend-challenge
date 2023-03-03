@@ -15,7 +15,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <ProgressBar />
+      <ProgressBar tasks={tasks} />
       <Filters text={text} setText={setText} />
       <Todo text={text} tasks={tasks} setTasks={setTasks} />
     </Container>

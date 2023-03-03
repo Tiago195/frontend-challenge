@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { ITask } from '../../interfaces/ITask'
 
 import { Container } from './style'
 
-export const ProgressBar = () => {
+type Props = {
+  tasks: ITask[]
+}
+
+export const ProgressBar = ({ tasks }: Props) => {
+  const bar = useRef<HTMLDivElement>(null);
+
+  const percentage = (100 / tasks.length) / 100;
+  const value = bar.current?.clientWidth ? bar.current?.clientWidth * percentage : 0;
+  const progress = tasks.filter(task => task.finished).length;
+
   return (
-    <Container progress={300}>
-    </Container>
+    <Container ref={bar} progress={value * progress || 0} />
   )
 }
