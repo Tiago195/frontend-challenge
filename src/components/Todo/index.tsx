@@ -17,8 +17,10 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
 
   const handleTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTasks(old => [...old, { content, finished: false }]);
-    setContent("");
+    if (content.length) {
+      setTasks(old => [...old, { content, finished: false }]);
+      setContent("");
+    }
   }
 
   const handleContent = ({ target }: any) => {
