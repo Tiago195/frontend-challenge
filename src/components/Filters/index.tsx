@@ -21,6 +21,10 @@ export const Filters = ({ text, setText, status, setStatus }: Props) => {
     setStatus((old) => old === s ? " " : s);
   }
 
+  const clickToClearText = () => {
+    setText('');
+  }
+
   return (
     <Container>
 
@@ -39,7 +43,7 @@ export const Filters = ({ text, setText, status, setStatus }: Props) => {
       <Search>
         <label htmlFor="">
           <input type="text" placeholder='Search items' value={text} onChange={handleText} />
-          {text.length ? <CloseIcon fontSize='small' /> : <SearchOutlinedIcon fontSize='small' />}
+          {text.length ? <CloseIcon fontSize='small' onClick={clickToClearText} /> : <SearchOutlinedIcon fontSize='small' />}
         </label>
       </Search>
 
