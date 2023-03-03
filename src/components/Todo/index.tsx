@@ -1,8 +1,9 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
-import { Container, TaskList, AddTask, Task } from './style'
+import { Container, TaskList, AddTask } from './style'
 import { ITask } from '../../interfaces/ITask';
+import { Task } from '../Task';
 
 type Props = {
   text: string
@@ -11,8 +12,8 @@ type Props = {
 }
 
 export const Todo = ({ text, tasks, setTasks }: Props) => {
-  const isSearchFor = text.length === 0;
   const [content, setContent] = useState("");
+  const isSearchFor = text.length === 0;
 
   const handleTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,9 +41,7 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
 
       <TaskList>
         {tasks.map((task, i) => (
-          <Task>
-            <span key={`${task} ${i}`}>{task.content}</span>
-          </Task>
+          <Task i={i} task={task} key={`${task.content} ${i}`} />
         ))}
       </TaskList>
     </Container>
