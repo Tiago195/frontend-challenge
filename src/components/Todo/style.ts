@@ -6,7 +6,7 @@ export const Container = styled.section`
   gap: 16px; 
 `
 
-export const AddTask = styled.div`
+export const AddTask = styled.form`
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   /* height: 46px; */
@@ -36,12 +36,17 @@ export const AddTask = styled.div`
 
   .plus {
     background-color: #4DA6B3;
-    opacity: 1;
     min-width: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+  }
+
+  .plus:disabled {
+    opacity: .5;
   }
 `
 
