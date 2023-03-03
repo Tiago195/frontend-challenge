@@ -10,19 +10,16 @@ type Props = {
   setText: Dispatch<SetStateAction<string>>
   status: TStatus
   setStatus: Dispatch<SetStateAction<TStatus>>
+  clickToClearText: () => void
 }
 
-export const Filters = ({ text, setText, status, setStatus }: Props) => {
+export const Filters = ({ text, setText, status, setStatus, clickToClearText }: Props) => {
   const handleText = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setText(target.value);
   }
 
   const handleFilter = (s: TStatus) => {
     setStatus((old) => old === s ? " " : s);
-  }
-
-  const clickToClearText = () => {
-    setText('');
   }
 
   return (
@@ -43,7 +40,11 @@ export const Filters = ({ text, setText, status, setStatus }: Props) => {
       <Search>
         <label htmlFor="">
           <input type="text" placeholder='Search items' value={text} onChange={handleText} />
-          {text.length ? <CloseIcon fontSize='small' onClick={clickToClearText} /> : <SearchOutlinedIcon fontSize='small' />}
+          {text.length ? (
+            <CloseIcon style={{ cursor: 'pointer' }} fontSize='small' onClick={clickToClearText} />
+          ) : (
+            <SearchOutlinedIcon fontSize='small' />
+          )}
         </label>
       </Search>
 

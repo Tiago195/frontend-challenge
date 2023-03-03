@@ -66,3 +66,13 @@ export const TaskList = styled.div`
   }
   
 `
+
+export const NotFound = styled.p`
+  color: #848484;
+  font-size: 14px;
+
+  span {
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+`

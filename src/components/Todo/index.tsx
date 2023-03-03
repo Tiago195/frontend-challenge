@@ -1,7 +1,7 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
-import { Container, TaskList, AddTask } from './style'
+import { Container, TaskList, AddTask, NotFound } from './style'
 import { ITask, TStatus } from '../../interfaces/ITask';
 import { Task } from '../Task';
 
@@ -10,13 +10,14 @@ type Props = {
   tasks: ITask[]
   setTasks: Dispatch<SetStateAction<ITask[]>>
   status: TStatus
+  clickToClearText: () => void
 }
 
-export const Todo = ({ text, tasks, setTasks, status }: Props) => {
+export const Todo = ({ text, tasks, setTasks, status, clickToClearText }: Props) => {
   const [content, setContent] = useState("");
   const tasksFiltered = tasks.filter(task => task.content.toUpperCase().includes(text.toUpperCase()) && task.status.includes(status));
 
-  const isSearchFor = text.length === 0;
+  const isSearchFor = text.length === 0 && status === " ";
 
   const handleTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,6 +54,11 @@ export const Todo = ({ text, tasks, setTasks, status }: Props) => {
         {tasksFiltered.map((task) => (
           <Task task={task} setTasks={setTasks} key={task.id} />
         ))}
+
+        {(!tasksFiltered.length && !isSearchFor) && (
+          <NotFound>Your search found no results. <span onClick={clickToClearText}>Clean the search here</span> to see all items.</NotFound>
+        )}
+
       </TaskList>
     </Container>
   )

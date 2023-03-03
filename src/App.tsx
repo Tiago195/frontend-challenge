@@ -13,12 +13,17 @@ function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [status, setStatus] = useState<TStatus>(' ');
 
+
+  const clickToClearText = () => {
+    setText('');
+  }
+
   return (
     <Container>
       <Header />
       <ProgressBar tasks={tasks} />
-      <Filters status={status} setStatus={setStatus} text={text} setText={setText} />
-      <Todo status={status} text={text} tasks={tasks} setTasks={setTasks} />
+      <Filters clickToClearText={clickToClearText} status={status} setStatus={setStatus} text={text} setText={setText} />
+      <Todo clickToClearText={clickToClearText} status={status} text={text} tasks={tasks} setTasks={setTasks} />
     </Container>
   )
 }
