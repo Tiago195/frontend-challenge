@@ -17,7 +17,7 @@ export const Task = ({ task, setTasks }: Props) => {
     setTasks(old => old.filter(e => e.id !== task.id));
   }
   const handleFinishedTask = () => {
-    task.finished = true;
+    task.status = "done ";
     setTasks(old => [...old]);
   }
 

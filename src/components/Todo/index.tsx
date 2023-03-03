@@ -2,30 +2,32 @@ import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 import { Container, TaskList, AddTask } from './style'
-import { ITask } from '../../interfaces/ITask';
+import { ITask, TStatus } from '../../interfaces/ITask';
 import { Task } from '../Task';
 
 type Props = {
   text: string
   tasks: ITask[]
   setTasks: Dispatch<SetStateAction<ITask[]>>
+  status: TStatus
 }
 
-export const Todo = ({ text, tasks, setTasks }: Props) => {
+export const Todo = ({ text, tasks, setTasks, status }: Props) => {
   const [content, setContent] = useState("");
+  const tasksFiltered = tasks.filter(task => task.content.toUpperCase().includes(text.toUpperCase()) && task.status.includes(status));
+
   const isSearchFor = text.length === 0;
 
   const handleTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (content.length) {
-      setTasks(old => [
-        ...old,
-        {
-          id: Math.random().toString().substring(3, 8),
-          content,
-          finished: false
-        }
-      ]);
+      const newTask: ITask = {
+        id: Math.random().toString().substring(3, 8),
+        content,
+        status: "pending "
+      };
+
+      setTasks(old => [...old, newTask]);
       setContent("");
     }
   }
@@ -36,7 +38,6 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
 
   return (
     <Container>
-
       {isSearchFor && (
         <AddTask onSubmit={handleTask}>
           <label htmlFor="">
@@ -49,7 +50,7 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
       )}
 
       <TaskList>
-        {tasks.map((task) => (
+        {tasksFiltered.map((task) => (
           <Task task={task} setTasks={setTasks} key={task.id} />
         ))}
       </TaskList>

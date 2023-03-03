@@ -1,45 +1,38 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'react'
+import React, { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { Container, Filter, Search } from './style'
+import { TStatus } from '../../interfaces/ITask';
 
 type Props = {
-  text: string,
+  text: string
   setText: Dispatch<SetStateAction<string>>
+  status: TStatus
+  setStatus: Dispatch<SetStateAction<TStatus>>
 }
 
-export const Filters = ({ text, setText }: Props) => {
-  const [filter, setFilter] = useState([false, false]);
-
+export const Filters = ({ text, setText, status, setStatus }: Props) => {
   const handleText = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setText(target.value);
   }
 
-  const handleFilter = (event: any, index: number) => {
-    setFilter((old => {
-      const isChecked = old.some(x => x);
-
-      if (isChecked && index !== old.findIndex(x => x)) {
-        return old.reverse();
-      }
-      old[index] = event.target.checked;
-      return [...old];
-    }));
+  const handleFilter = (s: TStatus) => {
+    setStatus((old) => old === s ? " " : s);
   }
 
   return (
     <Container>
 
       <Filter>
-        <label className={filter[0] ? 'select' : ''} htmlFor="done">
+        <label className={status.includes('done') ? 'select' : ''} htmlFor="done">
           <span>Done</span>
-          <input type="checkbox" name='done' id='done' onChange={(e) => handleFilter(e, 0)} checked={filter[0]} />
+          <input type="checkbox" name='done' id='done' onChange={() => handleFilter('done ')} checked={status.includes('done')} />
         </label>
 
-        <label className={filter[1] ? 'select' : ''} htmlFor="pending">
+        <label className={status.includes('pending') ? 'select' : ''} htmlFor="pending">
           <span>Pending</span>
-          <input type="checkbox" name='pending' id='pending' onChange={(e) => handleFilter(e, 1)} checked={filter[1]} />
+          <input type="checkbox" name='pending' id='pending' onChange={() => handleFilter('pending ')} checked={status.includes('pending')} />
         </label>
       </Filter>
 
