@@ -54,4 +54,15 @@ export const TaskList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  
+  ::-webkit-scrollbar-track {
+    background: #E4E4E4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #848484; 
+  }
+  
 `

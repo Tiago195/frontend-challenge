@@ -18,7 +18,14 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
   const handleTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (content.length) {
-      setTasks(old => [...old, { content, finished: false }]);
+      setTasks(old => [
+        ...old,
+        {
+          id: Math.random().toString().substring(3, 8),
+          content,
+          finished: false
+        }
+      ]);
       setContent("");
     }
   }
@@ -42,8 +49,8 @@ export const Todo = ({ text, tasks, setTasks }: Props) => {
       )}
 
       <TaskList>
-        {tasks.map((task, i) => (
-          <Task i={i} task={task} key={`${task.content} ${i}`} />
+        {tasks.map((task) => (
+          <Task task={task} setTasks={setTasks} key={task.id} />
         ))}
       </TaskList>
     </Container>
